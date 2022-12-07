@@ -56,16 +56,19 @@ h1{
 }
 
 .h1_1{
-    animation: animate1 1s ease-in-out forwards;
+    animation: animate1 1.2s ease-in-out forwards;
 }
 
 .h1_2{
-    animation: animate2 1s ease-in-out forwards;
+    animation: animate2 1.2s ease-in-out forwards;
 }
 
 @keyframes animate1{
     0%{
         transform: translateX(-1500px);
+    }
+    80%{
+        transform: translateX(35px);
     }
     100%{
         transform: translateX(0px);
@@ -75,6 +78,9 @@ h1{
 @keyframes animate2{
     0%{
         transform: translateX(1500px);
+    }
+    80%{
+        transform: translateX(-35px);
     }
     100%{
         transform: translateX(0px);
