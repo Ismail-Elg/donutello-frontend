@@ -7,6 +7,25 @@
     font-family: "Dosis", sans-serif;
 }
 
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    transition: all 0.5s ease;
+    a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color:  vars.$color-lemon;
+        font-size: 25px;
+        font-weight: 600;
+        padding: 15px 28px;
+        border-radius: 50px;
+        position: absolute;
+        bottom: 5%;
+        background-color: vars.$color-strawberry;
+    }
+}
+
 .h1Container{
     display: flex;
     flex-direction: column;
