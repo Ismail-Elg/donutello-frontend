@@ -12,7 +12,7 @@ class Scene {
       1000
     );
 
-    this.camera.position.set(0, 0, 4);
+    this.camera.position.set(0, 0, 0.4);
     this.camera.lookAt(0, 0, 0);
 
     this.renderer = new THREE.WebGLRenderer({
@@ -22,20 +22,30 @@ class Scene {
     });
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.enableDamping = true;
+
   }
 
   init() {
     this.addEvents();
     this.helpers();
-    this.test();
+    this.load();
+    this.lights();
   }
 
-  test(){
-    //create red cube
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-    const cube = new THREE.Mesh(geometry, material);
-    this.scene.add(cube);
+  load(){
+    //load donut from ../../assets/models/donut.glb
+    const loader = new GLTFLoader();
+    loader.load(
+        "/src/assets/models/donut.glb",
+        (gltf) => {
+            this.scene.add(gltf.scene);
+            }
+        );
+
+
   }
   addEvents() {
     requestAnimationFrame(this.run.bind(this));
@@ -57,6 +67,12 @@ class Scene {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
+
+    lights() {
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    this.scene.add(this.ambientLight);
+
+    }
 
   helpers() {
     // this.scene.add(new THREE.GridHelper(10, 10));
