@@ -43,6 +43,16 @@ h1{
     margin: 80px 0px;
 }
 
+.logo{
+    display: flex;
+    justify-content: center;
+    svg{
+        width: 110px;
+        position: absolute;
+        top: 3%;
+    }
+}
+
 .h1_1{
     animation: animate1 1s ease-in-out forwards;
 }

@@ -1,6 +1,8 @@
 let bg = document.querySelector('.bg');
 let buttonBg = document.querySelector('.button');
 let h1 = document.querySelector('.h1Container');
+let logos = document.querySelectorAll('.logoTekst');
+let logoBg = document.querySelector('.logoBg');
 
 let color = ['#82D1E4', '#F7F249', '#E72C70', '#F7F249'];
 let bgColor = ['#F7F249', '#82D1E4', '#F7F249', '#E72C70'];
@@ -11,6 +13,10 @@ setInterval(function(){
     buttonBg.style.backgroundColor = bgColor[i];
     buttonBg.style.color = color[i]; 
     h1.style.color = bgColor[i];
+    logos.forEach(logo => {
+        logo.style.fill = color[i];
+    });
+    logoBg.style.fill = bgColor[i];
 
     i++;
     if(i == color.length){
