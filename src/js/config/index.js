@@ -6,13 +6,20 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 
 class Scene {
   constructor() {
+    //log the size of .configurator__scene
+  
+    this.CANVAS_WIDTH = document.querySelector(".configurator__scene").clientWidth;
+    this.CANVAS_HEIGHT = document.querySelector(".configurator__scene").clientHeight;
+
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      this.CANVAS_WIDTH / this.CANVAS_HEIGHT,
       0.1,
       1000
     );
+    
+
 
     this.camera.position.set(0, 0, 3);
     this.camera.lookAt(0, 0, 0);
@@ -25,7 +32,7 @@ class Scene {
 
 
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
@@ -42,7 +49,7 @@ class Scene {
   }
 
   load(){
-    //load donut from ../../assets/models/donut.glb
+
     const loader = new GLTFLoader();
     loader.load(
         "/src/assets/models/donut.glb",
@@ -67,9 +74,9 @@ class Scene {
   }
 
   onResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = this.CANVAS_WIDTH / this.CANVAS_HEIGHT;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.CANVAS_WIDTH , this.CANVAS_HEIGHT);
   }
 
     lights() {
