@@ -55,17 +55,19 @@ class Scene {
         (gltf) => {
             this.scene.add(gltf.scene);
 
-            gltf.scene.children[1].visible = false;
+            gltf.scene.children[0].visible = false;
+            gltf.scene.children[1].visible = true;
             gltf.scene.children[2].visible = false;
             gltf.scene.children[3].visible = false;
             gltf.scene.children[4].visible = false;
             gltf.scene.children[5].visible = false;
+            gltf.scene.children[6].visible = false;
 
-            //change material of 0 child
-            gltf.scene.children[0].material = new THREE.MeshStandardMaterial({
-                color: 0xE5BA73,
-                metalness: 0,
-                roughness: 1,
+            //change material of dough
+            gltf.scene.children[1].material = new THREE.MeshStandardMaterial({
+                color: 0x000000,
+                roughness: 0.5,
+                metalness: 0.5,
             });
           }
         );
