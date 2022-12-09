@@ -23,5 +23,10 @@ body{
         background-color: vars.$color-white;
         border-top-left-radius: 80px;
         border-bottom-left-radius: 80px;
+        display: flex;
+        &__title{
+         
+            
+        }
     }
 }

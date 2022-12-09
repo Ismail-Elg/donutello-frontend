@@ -2,11 +2,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
-
 class Scene {
   constructor() {
-    //log the size of .configurator__scene
+
+ 
   
     this.CANVAS_WIDTH = document.querySelector(".configurator__scene").clientWidth;
     this.CANVAS_HEIGHT = document.querySelector(".configurator__scene").clientHeight;
@@ -21,7 +20,7 @@ class Scene {
     
 
 
-    this.camera.position.set(0, 0, 3);
+    this.camera.position.set(0, 2, 2);
     this.camera.lookAt(0, 0, 0);
 
     this.renderer = new THREE.WebGLRenderer({
@@ -55,7 +54,20 @@ class Scene {
         "/src/assets/models/donut.glb",
         (gltf) => {
             this.scene.add(gltf.scene);
-            }
+
+            gltf.scene.children[1].visible = false;
+            gltf.scene.children[2].visible = false;
+            gltf.scene.children[3].visible = false;
+            gltf.scene.children[4].visible = false;
+            gltf.scene.children[5].visible = false;
+
+            //change material of 0 child
+            gltf.scene.children[0].material = new THREE.MeshStandardMaterial({
+                color: 0xE5BA73,
+                metalness: 0,
+                roughness: 1,
+            });
+          }
         );
   }
   addEvents() {
@@ -74,19 +86,21 @@ class Scene {
   }
 
   onResize() {
+    this.CANVAS_WIDTH = document.querySelector(".configurator__scene").clientWidth;
+    this.CANVAS_HEIGHT = document.querySelector(".configurator__scene").clientHeight;
     this.camera.aspect = this.CANVAS_WIDTH / this.CANVAS_HEIGHT;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.CANVAS_WIDTH , this.CANVAS_HEIGHT);
   }
 
     lights() {
-    
-      
-
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       this.scene.add(ambientLight);
 
-
+      //add point light
+      this.pointLight = new THREE.PointLight(0xffffff, 0.8);
+      this.pointLight.position.set(0, 2, 0);
+      this.scene.add(this.pointLight);
     }
 
   helpers() {
