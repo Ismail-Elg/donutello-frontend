@@ -21,8 +21,9 @@
         padding: 15px 28px;
         border-radius: 50px;
         position: absolute;
-        bottom: 5%;
+        bottom: -50%;
         background-color: vars.$color-strawberry;
+        animation: animate3 1s ease-in-out forwards 0.5s;
     }
 }
 
@@ -41,6 +42,7 @@ h1{
     font-weight: 700;
     text-transform: uppercase;
     margin: 80px 0px;
+    cursor: default;
 }
 
 .logo{
@@ -49,24 +51,28 @@ h1{
     svg{
         width: 110px;
         position: absolute;
-        top: 3%;
+        top: -50%;
+        animation: animate4 1s ease-in-out forwards 0.5s;
     }
 }
 
 .h1_1{
-    animation: animate1 1s ease-in-out forwards;
+    animation: animate1 1.2s ease-in-out forwards;
 }
 
 .h1_2{
-    animation: animate2 1s ease-in-out forwards;
+    animation: animate2 1.2s ease-in-out forwards;
 }
 
 @keyframes animate1{
     0%{
         transform: translateX(-1500px);
     }
+    80%{
+        transform: translateX(35px);
+    }
     100%{
-        transform: translateY(0px);
+        transform: translateX(0px);
     }
 }
 
@@ -74,8 +80,28 @@ h1{
     0%{
         transform: translateX(1500px);
     }
+    80%{
+        transform: translateX(-35px);
+    }
     100%{
-        transform: translateY(0px);
+        transform: translateX(0px);
     }
 }
-  
+
+@keyframes animate3{
+    0%{
+        bottom: -50%;
+    }
+    100%{
+        bottom: 5%;
+    }
+}
+
+@keyframes animate4{
+    0%{
+        top: -50%;
+    }
+    100%{
+        top: 3%;
+    }
+}
