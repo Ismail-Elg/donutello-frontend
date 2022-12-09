@@ -10,16 +10,18 @@ body{
 .configurator{
     display: flex;
     &__scene{
-        width: 70%;
+        width: 60%;
         height: 100vh;
-        background-color: vars.$color-strawberry;
+     
     }
     &__editor{
         position: absolute;
-        width: 50rem;
+        width: 60rem;
         height: 100vh;
         top: 0;
         right: 0;
-        background-color: vars.$color-heaven;
+        background-color: vars.$color-white;
+        border-top-left-radius: 80px;
+        border-bottom-left-radius: 80px;
     }
 }
