@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
+
 class Scene {
   constructor() {
     this.scene = new THREE.Scene();
@@ -12,7 +14,7 @@ class Scene {
       1000
     );
 
-    this.camera.position.set(0, 0, 0.4);
+    this.camera.position.set(0, 0, 3);
     this.camera.lookAt(0, 0, 0);
 
     this.renderer = new THREE.WebGLRenderer({
@@ -21,10 +23,14 @@ class Scene {
       alpha: true,
     });
 
+
+
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
+
+   
 
   }
 
@@ -44,8 +50,6 @@ class Scene {
             this.scene.add(gltf.scene);
             }
         );
-
-
   }
   addEvents() {
     requestAnimationFrame(this.run.bind(this));
@@ -69,8 +73,12 @@ class Scene {
   }
 
     lights() {
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 1);
-    this.scene.add(this.ambientLight);
+    
+      
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      this.scene.add(ambientLight);
+
 
     }
 
