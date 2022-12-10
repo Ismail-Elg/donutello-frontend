@@ -86,7 +86,19 @@ class Scene {
             this.donut.children[1].children[1].material = doughMaterial;
             this.donut.children[1].children[2].material = doughFilling;
             this.donut.children[1].children[0].material = doughFilling;
+            this.donut.children[5].material.color.setHex(0x3C2317);
+            this.donut.children[6].children[0].material.color.setHex(0x3C2317);
+            this.donut.children[6].children[2].material.color.setHex(0x3C2317);
+          
+            //create a material for sugar 
+            const sugarMaterial = new THREE.MeshStandardMaterial({
+              color: 0xF2DEBA,
+              metalness: 0,
+              roughness: 1,
+           });
 
+           this.donut.children[6].children[1].material = sugarMaterial;
+  
           }
         );
      
@@ -104,8 +116,12 @@ class Scene {
         e.target.classList.add("configurator__editor__choices__pick-active");
         const dough = e.target.dataset.doughfilling;
         const glaze = e.target.dataset.glaze;
+        const pattern = e.target.dataset.pattern;
+        const topping = e.target.dataset.topping;
         this.changeDough(dough);
         this.changeGlaze(glaze);
+        this.changePattern(pattern);
+        this.changeTopping(topping);
       });
     });
 
@@ -126,7 +142,20 @@ class Scene {
         progress = 1;
       }
       else if(progress==1){
-      
+        this.donut.children[1].visible = false;
+
+        this.donut.children[3].visible = false;
+        this.donut.children[4].visible = false;
+        this.donut.children[5].visible = true;
+        this.donut.children[6].visible = false;
+        progress = 2;
+      }
+      else if(progress==2){
+        
+        this.donut.children[4].visible = false;
+        this.donut.children[5].visible = true;
+        this.donut.children[6].visible = false;
+        progress = 3;
       }
     });
 
@@ -167,6 +196,40 @@ class Scene {
       this.donut.children[2].material.color.setHex(0xFF577F);
     }
   }
+
+  changePattern(pattern) {
+    if(pattern==0){
+      this.donut.children[5].visible = false;
+    }
+    else if(pattern==1){
+      this.donut.children[5].visible = true;
+      this.donut.children[5].material.color.setHex(0x3C2317);
+    }
+  }
+
+  changeTopping(topping) {
+    if(topping==0){
+      this.donut.children[3].visible = false;
+      this.donut.children[4].visible = false;
+      this.donut.children[6].visible = false;
+    }
+    else if(topping==1){
+      this.donut.children[3].visible = true;
+      this.donut.children[4].visible = false;
+      this.donut.children[6].visible = false;
+   
+    }
+    else if(topping==2){
+      this.donut.children[3].visible = false;
+      this.donut.children[4].visible = true;
+      this.donut.children[6].visible = false;
+    }
+    else if(topping==3){
+      this.donut.children[3].visible = false;
+      this.donut.children[4].visible = false;
+      this.donut.children[6].visible = true;
+    }
+  }
    
   run() {
     this.render();
@@ -175,6 +238,12 @@ class Scene {
   render() {
     requestAnimationFrame(this.run.bind(this));
     this.renderer.render(this.scene, this.camera);
+
+    //rotate donut transition
+    if(this.donut){
+      this.donut.rotation.y += 0.01;
+    }
+
   }
 
   onResize() {
