@@ -51,6 +51,8 @@ else if(progress==3){
 }
 else if(progress==4){
     document.querySelector(".configurator__editor__title").innerHTML = "PROFICIAT JE DONUT IS KLAAR!";
+
+    document.querySelector(".configurator__editor__next__button").innerHTML = "VOLTOOI";
     steps.forEach((step) => {
         step.style.display = "none";
         steps[4].style.display = "none";
