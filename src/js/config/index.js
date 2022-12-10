@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { TextureLoader } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -48,7 +49,6 @@ class Scene {
   }
 
   load(){
-
     const loader = new GLTFLoader();
     loader.load(
         "/src/assets/models/donut.glb",
@@ -179,11 +179,36 @@ class Scene {
       }
     });
 
-  
+    document.getElementById('file').addEventListener('change', (e) => {
+      
+      let file = e.target.files[0];
+      if(file.type == "image/png" || file.type == "image/jpeg"){
+        //use a texture loader 
+        const logoMaterial = new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load(URL.createObjectURL(file)),
+          transparent: true,
+          opacity: 1,
+          side: THREE.DoubleSide,
+        });
+        this.donut.children[7].material = logoMaterial;
+        this.donut.children[8].material = logoMaterial;
+        this.donut.children[9].material = logoMaterial;
+       
+      }
+    });
+  }
+  imageIsLoaded() {
+    const logoMaterial = new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load(img.src),
+      transparent: true,
+      opacity: 1,
+      side: THREE.DoubleSide,
+    });
+    this.donut.children[9].material = logoMaterial;
   }
   
   changeDough(dough) {
-    console.log(dough);
+ 
     if(dough==0){
       this.donut.children[1].children[2].visible = false;
       this.donut.children[1].children[0].visible = false;
