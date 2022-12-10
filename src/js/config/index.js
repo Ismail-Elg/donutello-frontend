@@ -95,22 +95,41 @@ class Scene {
   addEvents() {
     requestAnimationFrame(this.run.bind(this));
     window.addEventListener("resize", this.onResize.bind(this), false);
-    
-
     const doughChoice = document.querySelectorAll(".configurator__editor__choices");
     doughChoice.forEach((choice) => {
-  
       choice.addEventListener("click", (e) => {
-
         doughChoice.forEach((choice) => {
           choice.classList.remove("configurator__editor__choices__pick-active");
         });
         e.target.classList.add("configurator__editor__choices__pick-active");
-
         const dough = e.target.dataset.doughfilling;
+        const glaze = e.target.dataset.glaze;
         this.changeDough(dough);
+        this.changeGlaze(glaze);
       });
     });
+
+    let progress = 0;
+    const button = document.querySelector(".configurator__editor__next__button");
+    button.addEventListener("click", (e) => {
+      if(progress==0){
+        this.donut.children[0].visible = true;
+        this.donut.children[1].visible = false;
+        this.donut.children[2].visible = true;
+        //add material to second child
+        const glazeMaterial = new THREE.MeshStandardMaterial({
+          color: 0xFF577F,
+          metalness: 0,
+          roughness: 1,
+        });
+        this.donut.children[2].material = glazeMaterial;
+        progress = 1;
+      }
+      else if(progress==1){
+      
+      }
+    });
+
   
   }
   
@@ -133,6 +152,20 @@ class Scene {
       this.donut.children[1].children[0].material.color.setHex(0xFF577F);
     }
 
+  }
+
+  changeGlaze(glaze) {
+    if(glaze==0){
+      this.donut.children[2].visible = false;
+    }
+    else if(glaze==1){
+      this.donut.children[2].visible = true;
+      this.donut.children[2].material.color.setHex(0x3C2317);
+    }
+    else if(glaze==2){
+      this.donut.children[2].visible = true;
+      this.donut.children[2].material.color.setHex(0xFF577F);
+    }
   }
    
   run() {
