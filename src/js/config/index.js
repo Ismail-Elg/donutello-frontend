@@ -153,7 +153,7 @@ class Scene {
       else if(progress==2){
         
         this.donut.children[4].visible = false;
-        this.donut.children[5].visible = true;
+    
         this.donut.children[6].visible = false;
         progress = 3;
       }
