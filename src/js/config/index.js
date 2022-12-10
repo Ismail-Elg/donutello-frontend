@@ -67,6 +67,9 @@ class Scene {
             this.donut.children[4].visible = false;
             this.donut.children[5].visible = false;
             this.donut.children[6].visible = false;
+            this.donut.children[7].visible = false;
+            this.donut.children[8].visible = false;
+            this.donut.children[9].visible = false;
 
             //create a new material for first child
             const doughMaterial = new THREE.MeshStandardMaterial({
@@ -77,6 +80,12 @@ class Scene {
 
             const doughFilling = new THREE.MeshStandardMaterial({
                 color: 0x3C2317,
+                metalness: 0,
+                roughness: 1,
+            });
+
+            const cartMaterial = new THREE.MeshStandardMaterial({
+                color: 0xFFFFFF,
                 metalness: 0,
                 roughness: 1,
             });
@@ -98,6 +107,10 @@ class Scene {
            });
 
            this.donut.children[6].children[1].material = sugarMaterial;
+
+           this.donut.children[7].material = cartMaterial;
+            this.donut.children[8].material = cartMaterial;
+            this.donut.children[9].material = cartMaterial;
   
           }
         );
@@ -118,10 +131,12 @@ class Scene {
         const glaze = e.target.dataset.glaze;
         const pattern = e.target.dataset.pattern;
         const topping = e.target.dataset.topping;
+        const logo = e.target.dataset.logo;
         this.changeDough(dough);
         this.changeGlaze(glaze);
         this.changePattern(pattern);
         this.changeTopping(topping);
+        this.changeLogo(logo);
       });
     });
 
@@ -156,6 +171,11 @@ class Scene {
     
         this.donut.children[6].visible = false;
         progress = 3;
+      }
+      else if(progress==3){
+        this.donut.children[7].visible = true;
+
+        progress = 4;
       }
     });
 
@@ -230,7 +250,30 @@ class Scene {
       this.donut.children[6].visible = true;
     }
   }
-   
+  
+  changeLogo(logo) {
+    if(logo==0){
+      this.donut.children[7].visible = false;
+      this.donut.children[8].visible = false;
+      this.donut.children[9].visible = false;
+    }
+    else if(logo==1){
+      this.donut.children[7].visible = true;
+      this.donut.children[8].visible = false;
+      this.donut.children[9].visible = false;
+    }
+    else if(logo==2){
+      this.donut.children[7].visible = false;
+      this.donut.children[8].visible = true;
+      this.donut.children[9].visible = false;
+    }
+    else if(logo==3){
+      this.donut.children[7].visible = false;
+      this.donut.children[8].visible = false;
+      this.donut.children[9].visible = true;
+    }
+  }
+
   run() {
     this.render();
   }
