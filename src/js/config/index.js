@@ -38,6 +38,7 @@ class Scene {
     this.controls.enableDamping = true;
 
     this.donut = null;
+    this.colorStep2 = null;
 
   }
 
@@ -149,6 +150,9 @@ class Scene {
         e.target.classList.add("configurator__editor__choices__color__pick-active");
         const colorPattern = e.target.dataset.colorpattern;
         this.changeColorPattern(colorPattern);
+
+      
+
       });
     });
 
@@ -156,6 +160,13 @@ class Scene {
     let progress = 0;
     const button = document.querySelector(".configurator__editor__next__button");
     button.addEventListener("click", (e) => {
+      this.colorStep2 = document.querySelectorAll(".configurator__editor__choices__color[data-colorstep='2']");
+ 
+      this.colorStep2.forEach((color) => {
+        color.style.display = "none";
+      });
+
+
       if(progress==0){
         this.donut.children[0].visible = true;
         this.donut.children[1].visible = false;
@@ -281,6 +292,9 @@ class Scene {
       this.donut.children[3].visible = false;
       this.donut.children[4].visible = true;
       this.donut.children[6].visible = false;
+      this.colorStep2.forEach((color) => {
+        color.style.display = "flex";
+      });
     }
     else if(topping==3){
       this.donut.children[3].visible = false;
