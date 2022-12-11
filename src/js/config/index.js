@@ -209,13 +209,13 @@ class Scene {
     document.getElementById('file').addEventListener('change', (e) => {
       
       let file = e.target.files[0];
+
+
       if(file.type == "image/png" || file.type == "image/jpeg"){
-        //use a texture loader 
+
         const logoMaterial = new THREE.MeshBasicMaterial({
           map: new THREE.TextureLoader().load(URL.createObjectURL(file)),
-          transparent: true,
-          opacity: 1,
-          side: THREE.DoubleSide,
+          color: 0xFFFFFF,
         });
         this.donut.children[7].material = logoMaterial;
         this.donut.children[8].material = logoMaterial;
