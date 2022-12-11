@@ -2,13 +2,51 @@
 
 body{
     overflow: hidden;
-    background-image: url('/images/donutello_pattern.webp');
-    background-repeat: repeat;
-    background-size: 100%;
+    background-color: #82D1E4;
+    height: 100vh;
+    width: 100%;
 }
+
+.loadingContainer{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #loading{
+    width: 10%;
+    animation: move 1s ease-in-out 3s forwards;
+  }
+  
+  @keyframes move{
+    0%{
+      transform: translateY(0px);
+    }
+    100%{
+      transform: translateY(-500px);
+    }
+  }
+}
+
+
 
 .configurator{
     display: flex;
+    background-image: url('/images/donutello_pattern.webp');
+    background-repeat: repeat;
+    background-size: 100%;
+    animation: fadeIn 1s ease-in-out forwards;
+
+    @keyframes fadeIn {
+      0%{
+        opacity: 0;
+      }
+
+      100%{
+        opacity: 1;
+      }
+    }
+
     &__scene{
         width: 60%;
         height: 100vh;
