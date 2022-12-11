@@ -250,7 +250,44 @@ body{
                     border: 5px solid vars.$color-strawberry;
                   }
               }
-           
+          &__user{
+            //edit input fields
+            input{
+                width: 80%;
+                height: 5rem;
+                border: none;
+                font-size: 2rem;
+                font-weight: 500;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+                border-radius: vars.$border-radius;
+                color: vars.$color-white;
+                background-color: vars.$color-pastelblue;
+                outline: none;
+                font-weight: bold;
+                &::placeholder{
+                    color: vars.$color-white;
+                }
+            }
+            textarea{
+                width: 80%;
+                height: 10rem;
+                border: none;
+                font-size: 2rem;
+                font-weight: 500;
+                margin-bottom: 2rem;
+                padding: 1rem;
+                border-radius: 40px;
+                color: vars.$color-white;
+                background-color: vars.$color-pastelblue;
+                outline: none;
+                font-weight: bold;
+             
+                &::placeholder{
+                    color: vars.$color-white;
+                }              
+            }
+          }
         }
         &__next{
           
