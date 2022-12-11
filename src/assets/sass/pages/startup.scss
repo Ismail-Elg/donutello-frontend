@@ -21,6 +21,7 @@
         padding: 15px 28px;
         border-radius: 50px;
         position: absolute;
+        z-index: 100;
         bottom: -50%;
         background-color: vars.$color-strawberry;
         animation: animate3 1s ease-in-out forwards 0.5s;
@@ -33,12 +34,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    line-height: 1px;
+    line-height: 150px;
     color: vars.$color-strawberry;
 }
 
 h1{
-    font-size: 200px;
+    font-size: 25rem;
     font-weight: 700;
     text-transform: uppercase;
     margin: 80px 0px;
@@ -51,6 +52,7 @@ h1{
     svg{
         width: 110px;
         position: absolute;
+        z-index: 100;
         top: -50%;
         animation: animate4 1s ease-in-out forwards 0.5s;
     }
