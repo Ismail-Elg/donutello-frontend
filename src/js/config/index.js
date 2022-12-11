@@ -121,6 +121,7 @@ class Scene {
     requestAnimationFrame(this.run.bind(this));
     window.addEventListener("resize", this.onResize.bind(this), false);
     const doughChoice = document.querySelectorAll(".configurator__editor__choices");
+    const colorChoice = document.querySelectorAll(".configurator__editor__choices__color");
     doughChoice.forEach((choice) => {
       choice.addEventListener("click", (e) => {
         doughChoice.forEach((choice) => {
@@ -139,6 +140,18 @@ class Scene {
         this.changeLogo(logo);
       });
     });
+
+    colorChoice.forEach((choice) => {
+      choice.addEventListener("click", (e) => {
+        colorChoice.forEach((choice) => {
+          choice.classList.remove("configurator__editor__choices__color__pick-active");
+        });
+        e.target.classList.add("configurator__editor__choices__color__pick-active");
+        const colorPattern = e.target.dataset.colorpattern;
+        this.changeColorPattern(colorPattern);
+      });
+    });
+
 
     let progress = 0;
     const button = document.querySelector(".configurator__editor__next__button");
@@ -299,6 +312,30 @@ class Scene {
     }
   }
 
+  changeColorPattern(color) {
+    if(color==0){
+      this.donut.children[5].material.color.setHex(0x3C2317);
+    }
+    else if(color==1){
+      this.donut.children[5].material.color.setHex(0xFF577F);
+    }
+    else if(color==2){
+      this.donut.children[5].material.color.setHex(0x3C2317);
+    }
+    else if(color==3){
+      this.donut.children[5].material.color.setHex(0xFF577F);
+    }
+    else if(color==4){
+      this.donut.children[5].material.color.setHex(0x3C2317);
+    }
+    else if(color==5){
+      this.donut.children[5].material.color.setHex(0xFF577F);
+    }
+    else if(color==6){
+      this.donut.children[5].material.color.setHex(0x3C2317);
+    }
+  }
+
   run() {
     this.render();
   }
@@ -309,7 +346,7 @@ class Scene {
 
     //rotate donut transition
     if(this.donut){
-      this.donut.rotation.y += 0.01;
+      this.donut.rotation.y += 0.005;
     }
 
   }

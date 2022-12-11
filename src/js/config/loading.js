@@ -1,5 +1,3 @@
-let config = document.querySelector(".configurator");
-config.style.display = "none";
 let loading = document.querySelector(".loadingContainer");
 
 var loading2 = bodymovin.loadAnimation({
@@ -11,10 +9,11 @@ var loading2 = bodymovin.loadAnimation({
 });
 
 window.onload = function(){
-    setTimeout(loadAfterTime, 3000);
+    loading.style.animation = "fadeOut 0.2s 3s ease-in-out forwards";
+    setTimeout(loadAfterTime, 3200);
 };
 
 function loadAfterTime(){
+
     loading.style.display = "none";
-    config.style.display = "block";
 }
