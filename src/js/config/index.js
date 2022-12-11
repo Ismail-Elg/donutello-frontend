@@ -142,8 +142,8 @@ class Scene {
   addEvents() {
     requestAnimationFrame(this.run.bind(this));
     window.addEventListener("resize", this.onResize.bind(this), false);
-    const doughChoice = document.querySelectorAll(".configurator__editor__choices");
-    const colorChoice = document.querySelectorAll(".configurator__editor__choices__color");
+    const doughChoice = document.querySelectorAll(".configurator__editor__choices__pick");
+    const colorChoice = document.querySelectorAll(".configurator__editor__choices__color__pick");
     doughChoice.forEach((choice) => {
       choice.addEventListener("click", (e) => {
         doughChoice.forEach((choice) => {
