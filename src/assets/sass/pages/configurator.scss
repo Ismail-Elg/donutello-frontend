@@ -63,7 +63,19 @@ body{
         border-bottom-left-radius: 80px;
         text-align: center;
         padding: 5rem;
-      
+        transform: translateX(2500px);
+
+        animation: moveFromRight 1.5s ease-in-out forwards;
+
+        @keyframes moveFromRight{
+          0%{
+            transform: translateX(2500px);
+          }
+          100%{
+            transform: translateX(0px);
+          }
+        }
+
         &__title{
             width: fit-content;
             margin: 0 auto;

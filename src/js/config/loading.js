@@ -11,7 +11,7 @@ var loading2 = bodymovin.loadAnimation({
 });
 
 window.onload = function(){
-    setTimeout(loadAfterTime, 3500);
+    setTimeout(loadAfterTime, 3000);
 };
 
 function loadAfterTime(){
