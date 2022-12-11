@@ -309,7 +309,7 @@ class Scene {
 
     //rotate donut transition
     if(this.donut){
-      this.donut.rotation.y += 0.01;
+      this.donut.rotation.y += 0.005;
     }
 
   }

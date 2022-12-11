@@ -13,6 +13,12 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: vars.$color-heaven;
+
   #loading{
     width: 10%;
     animation: move 1s ease-in-out 3s forwards;
@@ -24,6 +30,14 @@ body{
     }
     100%{
       transform: translateY(-500px);
+    }
+  }
+  @keyframes fadeOut{
+    0%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
     }
   }
 }
