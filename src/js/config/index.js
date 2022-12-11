@@ -6,8 +6,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 class Scene {
   constructor() {
 
- 
-  
     this.CANVAS_WIDTH = document.querySelector(".configurator__scene").clientWidth;
     this.CANVAS_HEIGHT = document.querySelector(".configurator__scene").clientHeight;
 
@@ -18,8 +16,6 @@ class Scene {
       0.1,
       1000
     );
-    
-
 
     this.camera.position.set(0, 2, 2);
     this.camera.lookAt(0, 0, 0);
@@ -30,8 +26,6 @@ class Scene {
       alpha: true,
     });
 
-
-
     this.renderer.setSize(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -39,6 +33,31 @@ class Scene {
 
     this.donut = null;
     this.colorStep2 = null;
+
+    this.configuration = {
+      dough: 1,
+      glaze: 2,
+      pattern: {
+        type: 1,
+        color: 0,
+      },
+      topping: {
+        type: 0,
+        color: 0,
+      },
+      logo:{
+        type: 1,
+        img: null,
+      },
+      user:{
+        name: null,
+        email: null,
+        phone: null,
+        message: null,
+      }
+    }
+
+ 
 
   }
 
@@ -49,75 +68,75 @@ class Scene {
     this.lights();
   }
 
-  load(){
+  load() {
     const loader = new GLTFLoader();
     loader.load(
-        "/src/assets/models/donut.glb",
-        (gltf) => {
+      "/src/assets/models/donut.glb",
+      (gltf) => {
 
-            this.donut = gltf.scene;
-            
-
-            this.scene.add(this.donut);
+        this.donut = gltf.scene;
 
 
-            this.donut.children[0].visible = false;
-            this.donut.children[1].visible = true;
-            this.donut.children[2].visible = false;
-            this.donut.children[3].visible = false;
-            this.donut.children[4].visible = false;
-            this.donut.children[5].visible = false;
-            this.donut.children[6].visible = false;
-            this.donut.children[7].visible = false;
-            this.donut.children[8].visible = false;
-            this.donut.children[9].visible = false;
+        this.scene.add(this.donut);
 
-            //create a new material for first child
-            const doughMaterial = new THREE.MeshStandardMaterial({
-                color: 0xE5BA73,
-                metalness: 0,
-                roughness: 1,
-            });
 
-            const doughFilling = new THREE.MeshStandardMaterial({
-                color: 0x3C2317,
-                metalness: 0,
-                roughness: 1,
-            });
+        this.donut.children[0].visible = false;
+        this.donut.children[1].visible = true;
+        this.donut.children[2].visible = false;
+        this.donut.children[3].visible = false;
+        this.donut.children[4].visible = false;
+        this.donut.children[5].visible = false;
+        this.donut.children[6].visible = false;
+        this.donut.children[7].visible = false;
+        this.donut.children[8].visible = false;
+        this.donut.children[9].visible = false;
 
-            const cartMaterial = new THREE.MeshStandardMaterial({
-                color: 0xFFFFFF,
-                metalness: 0,
-                roughness: 1,
-            });
+        //create a new material for first child
+        const doughMaterial = new THREE.MeshStandardMaterial({
+          color: 0xE5BA73,
+          metalness: 0,
+          roughness: 1,
+        });
 
-           
-            this.donut.children[0].material = doughMaterial;
-            this.donut.children[1].children[1].material = doughMaterial;
-            this.donut.children[1].children[2].material = doughFilling;
-            this.donut.children[1].children[0].material = doughFilling;
-            this.donut.children[5].material.color.setHex(0x3C2317);
-            this.donut.children[6].children[0].material.color.setHex(0x3C2317);
-            this.donut.children[6].children[2].material.color.setHex(0x3C2317);
-          
-            //create a material for sugar 
-            const sugarMaterial = new THREE.MeshStandardMaterial({
-              color: 0xF2DEBA,
-              metalness: 0,
-              roughness: 1,
-           });
+        const doughFilling = new THREE.MeshStandardMaterial({
+          color: 0x3C2317,
+          metalness: 0,
+          roughness: 1,
+        });
 
-           this.donut.children[6].children[1].material = sugarMaterial;
+        const cartMaterial = new THREE.MeshStandardMaterial({
+          color: 0xFFFFFF,
+          metalness: 0,
+          roughness: 1,
+        });
 
-           this.donut.children[7].material = cartMaterial;
-            this.donut.children[8].material = cartMaterial;
-            this.donut.children[9].material = cartMaterial;
-  
-          }
-        );
-     
+
+        this.donut.children[0].material = doughMaterial;
+        this.donut.children[1].children[1].material = doughMaterial;
+        this.donut.children[1].children[2].material = doughFilling;
+        this.donut.children[1].children[0].material = doughFilling;
+        this.donut.children[5].material.color.setHex(0x3C2317);
+        this.donut.children[6].children[0].material.color.setHex(0x3C2317);
+        this.donut.children[6].children[2].material.color.setHex(0x3C2317);
+
+        //create a material for sugar 
+        const sugarMaterial = new THREE.MeshStandardMaterial({
+          color: 0xF2DEBA,
+          metalness: 0,
+          roughness: 1,
+        });
+
+        this.donut.children[6].children[1].material = sugarMaterial;
+
+        this.donut.children[7].material = cartMaterial;
+        this.donut.children[8].material = cartMaterial;
+        this.donut.children[9].material = cartMaterial;
+
+      }
+    );
+
   }
-  
+
   addEvents() {
     requestAnimationFrame(this.run.bind(this));
     window.addEventListener("resize", this.onResize.bind(this), false);
@@ -154,7 +173,7 @@ class Scene {
         const colorTopping = e.target.dataset.colortopping;
         this.changeColorTopping(colorTopping);
 
-      
+
 
       });
     });
@@ -164,13 +183,14 @@ class Scene {
     const button = document.querySelector(".configurator__editor__next__button");
     button.addEventListener("click", (e) => {
       this.colorStep2 = document.querySelectorAll(".configurator__editor__choices__color[data-colorstep='2']");
- 
+
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
 
+      console.log(this.configuration);
 
-      if(progress==0){
+      if (progress == 0) {
         this.donut.children[0].visible = true;
         this.donut.children[1].visible = false;
         this.donut.children[2].visible = true;
@@ -183,7 +203,7 @@ class Scene {
         this.donut.children[2].material = glazeMaterial;
         progress = 1;
       }
-      else if(progress==1){
+      else if (progress == 1) {
         this.donut.children[1].visible = false;
 
         this.donut.children[3].visible = false;
@@ -192,26 +212,30 @@ class Scene {
         this.donut.children[6].visible = false;
         progress = 2;
       }
-      else if(progress==2){
-        
+      else if (progress == 2) {
+
         this.donut.children[4].visible = false;
-    
+
         this.donut.children[6].visible = false;
         progress = 3;
       }
-      else if(progress==3){
+      else if (progress == 3) {
         this.donut.children[7].visible = true;
 
         progress = 4;
       }
+      else if (progress == 4) {
+   
+      
+      }
     });
 
     document.getElementById('file').addEventListener('change', (e) => {
-      
+
       let file = e.target.files[0];
 
 
-      if(file.type == "image/png" || file.type == "image/jpeg"){
+      if (file.type == "image/png" || file.type == "image/jpeg") {
 
         const logoMaterial = new THREE.MeshBasicMaterial({
           map: new THREE.TextureLoader().load(URL.createObjectURL(file)),
@@ -220,168 +244,190 @@ class Scene {
         this.donut.children[7].material = logoMaterial;
         this.donut.children[8].material = logoMaterial;
         this.donut.children[9].material = logoMaterial;
-       
+
       }
     });
   }
-  imageIsLoaded() {
-    const logoMaterial = new THREE.MeshBasicMaterial({
-      map: new THREE.TextureLoader().load(img.src),
-      transparent: true,
-      opacity: 1,
-      side: THREE.DoubleSide,
-    });
-    this.donut.children[9].material = logoMaterial;
-  }
-  
+
   changeDough(dough) {
- 
-    if(dough==0){
+
+    if (dough == 0) {
       this.donut.children[1].children[2].visible = false;
       this.donut.children[1].children[0].visible = false;
+     this.configuration.dough = 0;
     }
-    else if(dough==1){
+    else if (dough == 1) {
       this.donut.children[1].children[2].visible = true;
       this.donut.children[1].children[0].visible = true;
       this.donut.children[1].children[2].material.color.setHex(0x3C2317);
       this.donut.children[1].children[0].material.color.setHex(0x3C2317);
+      this.configuration.dough = 1;
     }
-    else if(dough==2){
+    else if (dough == 2) {
       this.donut.children[1].children[2].visible = true;
       this.donut.children[1].children[0].visible = true;
       this.donut.children[1].children[2].material.color.setHex(0xFF577F);
       this.donut.children[1].children[0].material.color.setHex(0xFF577F);
+      this.configuration.dough = 2;
     }
 
   }
 
   changeGlaze(glaze) {
-    if(glaze==0){
+    if (glaze == 0) {
       this.donut.children[2].visible = false;
+      this.configuration.glaze = 0;
     }
-    else if(glaze==1){
+    else if (glaze == 1) {
       this.donut.children[2].visible = true;
       this.donut.children[2].material.color.setHex(0x3C2317);
+      this.configuration.glaze = 1;
     }
-    else if(glaze==2){
+    else if (glaze == 2) {
       this.donut.children[2].visible = true;
       this.donut.children[2].material.color.setHex(0xFF577F);
+      this.configuration.glaze = 2;
     }
   }
 
   changePattern(pattern) {
-    if(pattern==0){
+    if (pattern == 0) {
       this.donut.children[5].visible = false;
+      this.configuration.pattern.type = 0;
     }
-    else if(pattern==1){
+    else if (pattern == 1) {
       this.donut.children[5].visible = true;
       this.donut.children[5].material.color.setHex(0x3C2317);
+      this.configuration.pattern.type = 1;
+      this.configuration.pattern.color = 0;
     }
   }
 
   changeTopping(topping) {
-    if(topping==0){
+    if (topping == 0) {
       this.donut.children[3].visible = false;
       this.donut.children[4].visible = false;
       this.donut.children[6].visible = false;
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
+      this.configuration.topping.type = 0;
     }
-    else if(topping==1){
+    else if (topping == 1) {
       this.donut.children[3].visible = true;
       this.donut.children[4].visible = false;
       this.donut.children[6].visible = false;
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
+      this.configuration.topping.type = 1;
     }
-    else if(topping==2){
+    else if (topping == 2) {
       this.donut.children[3].visible = false;
       this.donut.children[4].visible = true;
       this.donut.children[6].visible = false;
       this.colorStep2.forEach((color) => {
         color.style.display = "flex";
       });
+      this.configuration.topping.type = 2;
     }
-    else if(topping==3){
+    else if (topping == 3) {
       this.donut.children[3].visible = false;
       this.donut.children[4].visible = false;
       this.donut.children[6].visible = true;
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
+      this.configuration.topping.type = 3;
     }
   }
-  
+
   changeLogo(logo) {
-    if(logo==0){
+    if (logo == 0) {
       this.donut.children[7].visible = false;
       this.donut.children[8].visible = false;
       this.donut.children[9].visible = false;
+      this.configuration.logo.type = 0;
     }
-    else if(logo==1){
+    else if (logo == 1) {
       this.donut.children[7].visible = true;
       this.donut.children[8].visible = false;
       this.donut.children[9].visible = false;
+      this.configuration.logo.type = 1;
     }
-    else if(logo==2){
+    else if (logo == 2) {
       this.donut.children[7].visible = false;
       this.donut.children[8].visible = true;
       this.donut.children[9].visible = false;
+      this.configuration.logo.type = 2;
     }
-    else if(logo==3){
+    else if (logo == 3) {
       this.donut.children[7].visible = false;
       this.donut.children[8].visible = false;
       this.donut.children[9].visible = true;
+      this.configuration.logo.type = 3;
     }
   }
 
   changeColorPattern(color) {
-    if(color==0){
+    if (color == 0) {
       this.donut.children[5].material.color.setHex(0x3C2317);
+      this.configuration.pattern.color = 0;
     }
-    else if(color==1){
+    else if (color == 1) {
       this.donut.children[5].material.color.setHex(0xFF577F);
+      this.configuration.pattern.color = 1;
     }
-    else if(color==2){
+    else if (color == 2) {
       this.donut.children[5].material.color.setHex(0x3C2317);
+      this.configuration.pattern.color = 2;
     }
-    else if(color==3){
+    else if (color == 3) {
       this.donut.children[5].material.color.setHex(0xFF577F);
+      this.configuration.pattern.color = 3;
     }
-    else if(color==4){
+    else if (color == 4) {
       this.donut.children[5].material.color.setHex(0x3C2317);
+      this.configuration.pattern.color = 4;
     }
-    else if(color==5){
+    else if (color == 5) {
       this.donut.children[5].material.color.setHex(0xFF577F);
+      this.configuration.pattern.color = 5;
     }
-    else if(color==6){
+    else if (color == 6) {
       this.donut.children[5].material.color.setHex(0x3C2317);
+      this.configuration.pattern.color = 6;
     }
   }
 
   changeColorTopping(color) {
-    if(color==0){
+    if (color == 0) {
       this.donut.children[4].material.color.setHex(0x3C2317);
+      this.configuration.topping.color = 0;
     }
-    else if(color==1){
+    else if (color == 1) {
       this.donut.children[4].material.color.setHex(0xFF577F);
+      this.configuration.topping.color = 1;
     }
-    else if(color==2){
+    else if (color == 2) {
       this.donut.children[4].material.color.setHex(0x3C2317);
+      this.configuration.topping.color = 2;
     }
-    else if(color==3){
+    else if (color == 3) {
       this.donut.children[4].material.color.setHex(0xFF577F);
+      this.configuration.topping.color = 3;
     }
-    else if(color==4){
+    else if (color == 4) {
       this.donut.children[4].material.color.setHex(0x3C2317);
+      this.configuration.topping.color = 4;
     }
-    else if(color==5){
+    else if (color == 5) {
       this.donut.children[4].material.color.setHex(0xFF577F);
+      this.configuration.topping.color = 5;
     }
-    else if(color==6){
+    else if (color == 6) {
       this.donut.children[4].material.color.setHex(0x3C2317);
+      this.configuration.topping.color = 6;
     }
   }
 
@@ -395,7 +441,7 @@ class Scene {
     this.renderer.render(this.scene, this.camera);
 
     //rotate donut transition
-    if(this.donut){
+    if (this.donut) {
       this.donut.rotation.y += 0.005;
     }
 
@@ -406,18 +452,18 @@ class Scene {
     this.CANVAS_HEIGHT = document.querySelector(".configurator__scene").clientHeight;
     this.camera.aspect = this.CANVAS_WIDTH / this.CANVAS_HEIGHT;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(this.CANVAS_WIDTH , this.CANVAS_HEIGHT);
+    this.renderer.setSize(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
   }
 
-    lights() {
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-      this.scene.add(ambientLight);
+  lights() {
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    this.scene.add(ambientLight);
 
-      //add point light
-      this.pointLight = new THREE.PointLight(0xffffff, 0.8);
-      this.pointLight.position.set(0, 2, 0);
-      this.scene.add(this.pointLight);
-    }
+    //add point light
+    this.pointLight = new THREE.PointLight(0xffffff, 0.8);
+    this.pointLight.position.set(0, 2, 0);
+    this.scene.add(this.pointLight);
+  }
 
   helpers() {
     // this.scene.add(new THREE.GridHelper(10, 10));
