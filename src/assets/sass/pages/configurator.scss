@@ -78,9 +78,7 @@ body{
         text-align: center;
         padding: 5rem;
         transform: translateX(2500px);
-
-        animation: moveFromRight 1.5s ease-in-out forwards;
-
+        animation: moveFromRight 1.5s 3.2s ease-in-out forwards;
         @keyframes moveFromRight{
           0%{
             transform: translateX(2500px);
@@ -205,6 +203,51 @@ body{
                       cursor: pointer;
                       width: 100%;
                     }
+                  }
+              }
+
+              &__color{
+                width: 100%;
+          
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                &__pick{
+                    background-color: vars.$color-pastelblue;
+                    width: 5rem;
+                    height: 5rem;
+                    border-radius: 50%;
+                    margin: 1rem;
+                    font-size: 2rem;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    color: vars.$color-white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    border: 5px solid vars.$color-white;
+                    position: relative;
+                }
+                &__pick:after {
+                    content: '';
+                    position: absolute;
+                    top: -15px;
+                    left: -15px;
+                    right: -15px;
+                    bottom: -15px;
+                    border: vars.$color-white 7px solid;
+                    border-radius: 50%;
+                  }
+                  &__pick:hover:after {
+                    border: vars.$color-pastelblue 7px solid;
+                  }
+                  &__pick:active:after {
+                    border: vars.$color-strawberry 7px solid;
+                  }
+                  &__pick-active:after {
+                    border: 5px solid vars.$color-strawberry;
                   }
               }
            
