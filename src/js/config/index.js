@@ -151,6 +151,9 @@ class Scene {
         const colorPattern = e.target.dataset.colorpattern;
         this.changeColorPattern(colorPattern);
 
+        const colorTopping = e.target.dataset.colortopping;
+        this.changeColorTopping(colorTopping);
+
       
 
       });
@@ -281,12 +284,17 @@ class Scene {
       this.donut.children[3].visible = false;
       this.donut.children[4].visible = false;
       this.donut.children[6].visible = false;
+      this.colorStep2.forEach((color) => {
+        color.style.display = "none";
+      });
     }
     else if(topping==1){
       this.donut.children[3].visible = true;
       this.donut.children[4].visible = false;
       this.donut.children[6].visible = false;
-   
+      this.colorStep2.forEach((color) => {
+        color.style.display = "none";
+      });
     }
     else if(topping==2){
       this.donut.children[3].visible = false;
@@ -300,6 +308,9 @@ class Scene {
       this.donut.children[3].visible = false;
       this.donut.children[4].visible = false;
       this.donut.children[6].visible = true;
+      this.colorStep2.forEach((color) => {
+        color.style.display = "none";
+      });
     }
   }
   
@@ -349,6 +360,31 @@ class Scene {
       this.donut.children[5].material.color.setHex(0x3C2317);
     }
   }
+
+  changeColorTopping(color) {
+    if(color==0){
+      this.donut.children[4].material.color.setHex(0x3C2317);
+    }
+    else if(color==1){
+      this.donut.children[4].material.color.setHex(0xFF577F);
+    }
+    else if(color==2){
+      this.donut.children[4].material.color.setHex(0x3C2317);
+    }
+    else if(color==3){
+      this.donut.children[4].material.color.setHex(0xFF577F);
+    }
+    else if(color==4){
+      this.donut.children[4].material.color.setHex(0x3C2317);
+    }
+    else if(color==5){
+      this.donut.children[4].material.color.setHex(0xFF577F);
+    }
+    else if(color==6){
+      this.donut.children[4].material.color.setHex(0x3C2317);
+    }
+  }
+
 
   run() {
     this.render();
