@@ -35,6 +35,7 @@ class Scene {
     this.colorStep2 = null;
 
     this.configuration = {
+     donut: {
       dough: 1,
       glaze: 2,
       pattern: {
@@ -55,6 +56,7 @@ class Scene {
         phone: null,
         message: null,
       }
+     }
     }
 
  
@@ -225,8 +227,30 @@ class Scene {
         progress = 4;
       }
       else if (progress == 4) {
-   
-      
+        //log the configuration
+        console.log(this.configuration);
+
+        this.configuration.donut.logo.img = "test";
+        this.configuration.donut.user.name = "John Doe";
+        this.configuration.donut.user.email = "john@test.com";
+        this.configuration.donut.user.phone = "123456789";
+        this.configuration.donut.user.message = "test";
+
+        console.log(JSON.stringify(this.configuration));
+        fetch("https://salmon-puffer-tie.cyclic.app/api/v1/donuts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.configuration),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+          }
+          );
+     
+
       }
     });
 
@@ -254,21 +278,21 @@ class Scene {
     if (dough == 0) {
       this.donut.children[1].children[2].visible = false;
       this.donut.children[1].children[0].visible = false;
-     this.configuration.dough = 0;
+     this.configuration.donut.dough = 0;
     }
     else if (dough == 1) {
       this.donut.children[1].children[2].visible = true;
       this.donut.children[1].children[0].visible = true;
       this.donut.children[1].children[2].material.color.setHex(0x3C2317);
       this.donut.children[1].children[0].material.color.setHex(0x3C2317);
-      this.configuration.dough = 1;
+      this.configuration.donut.dough = 1;
     }
     else if (dough == 2) {
       this.donut.children[1].children[2].visible = true;
       this.donut.children[1].children[0].visible = true;
       this.donut.children[1].children[2].material.color.setHex(0xFF577F);
       this.donut.children[1].children[0].material.color.setHex(0xFF577F);
-      this.configuration.dough = 2;
+      this.configuration.donut.dough = 2;
     }
 
   }
@@ -276,30 +300,30 @@ class Scene {
   changeGlaze(glaze) {
     if (glaze == 0) {
       this.donut.children[2].visible = false;
-      this.configuration.glaze = 0;
+      this.configuration.donut.glaze = 0;
     }
     else if (glaze == 1) {
       this.donut.children[2].visible = true;
       this.donut.children[2].material.color.setHex(0x3C2317);
-      this.configuration.glaze = 1;
+      this.configuration.donut.glaze = 1;
     }
     else if (glaze == 2) {
       this.donut.children[2].visible = true;
       this.donut.children[2].material.color.setHex(0xFF577F);
-      this.configuration.glaze = 2;
+      this.configuration.donut.glaze = 2;
     }
   }
 
   changePattern(pattern) {
     if (pattern == 0) {
       this.donut.children[5].visible = false;
-      this.configuration.pattern.type = 0;
+      this.configuration.donut.pattern.type = 0;
     }
     else if (pattern == 1) {
       this.donut.children[5].visible = true;
       this.donut.children[5].material.color.setHex(0x3C2317);
-      this.configuration.pattern.type = 1;
-      this.configuration.pattern.color = 0;
+      this.configuration.donut.pattern.type = 1;
+      this.configuration.donut.pattern.color = 0;
     }
   }
 
@@ -311,7 +335,7 @@ class Scene {
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
-      this.configuration.topping.type = 0;
+      this.configuration.donut.topping.type = 0;
     }
     else if (topping == 1) {
       this.donut.children[3].visible = true;
@@ -320,7 +344,7 @@ class Scene {
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
-      this.configuration.topping.type = 1;
+      this.configuration.donut.topping.type = 1;
     }
     else if (topping == 2) {
       this.donut.children[3].visible = false;
@@ -329,7 +353,7 @@ class Scene {
       this.colorStep2.forEach((color) => {
         color.style.display = "flex";
       });
-      this.configuration.topping.type = 2;
+      this.configuration.donut.topping.type = 2;
     }
     else if (topping == 3) {
       this.donut.children[3].visible = false;
@@ -338,7 +362,7 @@ class Scene {
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
-      this.configuration.topping.type = 3;
+      this.configuration.donut.topping.type = 3;
     }
   }
 
@@ -347,87 +371,87 @@ class Scene {
       this.donut.children[7].visible = false;
       this.donut.children[8].visible = false;
       this.donut.children[9].visible = false;
-      this.configuration.logo.type = 0;
+      this.configuration.donut.logo.type = 0;
     }
     else if (logo == 1) {
       this.donut.children[7].visible = true;
       this.donut.children[8].visible = false;
       this.donut.children[9].visible = false;
-      this.configuration.logo.type = 1;
+      this.configuration.donut.logo.type = 1;
     }
     else if (logo == 2) {
       this.donut.children[7].visible = false;
       this.donut.children[8].visible = true;
       this.donut.children[9].visible = false;
-      this.configuration.logo.type = 2;
+      this.configuration.donut.logo.type = 2;
     }
     else if (logo == 3) {
       this.donut.children[7].visible = false;
       this.donut.children[8].visible = false;
       this.donut.children[9].visible = true;
-      this.configuration.logo.type = 3;
+      this.configuration.donut.logo.type = 3;
     }
   }
 
   changeColorPattern(color) {
     if (color == 0) {
       this.donut.children[5].material.color.setHex(0x3C2317);
-      this.configuration.pattern.color = 0;
+      this.configuration.donut.pattern.color = 0;
     }
     else if (color == 1) {
       this.donut.children[5].material.color.setHex(0xFF577F);
-      this.configuration.pattern.color = 1;
+      this.configuration.donut.pattern.color = 1;
     }
     else if (color == 2) {
       this.donut.children[5].material.color.setHex(0x3C2317);
-      this.configuration.pattern.color = 2;
+      this.configuration.donut.pattern.color = 2;
     }
     else if (color == 3) {
       this.donut.children[5].material.color.setHex(0xFF577F);
-      this.configuration.pattern.color = 3;
+      this.configuration.donut.pattern.color = 3;
     }
     else if (color == 4) {
       this.donut.children[5].material.color.setHex(0x3C2317);
-      this.configuration.pattern.color = 4;
+      this.configuration.donut.pattern.color = 4;
     }
     else if (color == 5) {
       this.donut.children[5].material.color.setHex(0xFF577F);
-      this.configuration.pattern.color = 5;
+      this.configuration.donut.pattern.color = 5;
     }
     else if (color == 6) {
       this.donut.children[5].material.color.setHex(0x3C2317);
-      this.configuration.pattern.color = 6;
+      this.configuration.donut.pattern.color = 6;
     }
   }
 
   changeColorTopping(color) {
     if (color == 0) {
       this.donut.children[4].material.color.setHex(0x3C2317);
-      this.configuration.topping.color = 0;
+      this.configuration.donut.topping.color = 0;
     }
     else if (color == 1) {
       this.donut.children[4].material.color.setHex(0xFF577F);
-      this.configuration.topping.color = 1;
+      this.configuration.donut.topping.color = 1;
     }
     else if (color == 2) {
       this.donut.children[4].material.color.setHex(0x3C2317);
-      this.configuration.topping.color = 2;
+      this.configuration.donut.topping.color = 2;
     }
     else if (color == 3) {
       this.donut.children[4].material.color.setHex(0xFF577F);
-      this.configuration.topping.color = 3;
+      this.configuration.donut.topping.color = 3;
     }
     else if (color == 4) {
       this.donut.children[4].material.color.setHex(0x3C2317);
-      this.configuration.topping.color = 4;
+      this.configuration.donut.topping.color = 4;
     }
     else if (color == 5) {
       this.donut.children[4].material.color.setHex(0xFF577F);
-      this.configuration.topping.color = 5;
+      this.configuration.donut.topping.color = 5;
     }
     else if (color == 6) {
       this.donut.children[4].material.color.setHex(0x3C2317);
-      this.configuration.topping.color = 6;
+      this.configuration.donut.topping.color = 6;
     }
   }
 
