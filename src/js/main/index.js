@@ -22,4 +22,4 @@ setInterval(function(){
     if(i == color.length){
         i = 0;
     }
-}, 1000);
+}, 1400);
