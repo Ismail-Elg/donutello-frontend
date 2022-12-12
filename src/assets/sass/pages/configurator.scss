@@ -377,6 +377,27 @@ body{
           background-position: center;
           background-repeat: no-repeat;
         }
+
+        .rechthoek{
+          background-image: url("images/rechthoek.png");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .vierkant{
+          background-image: url("images/vierkant.png");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .cirkel{
+          background-image: url("images/cirkel.png");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
     }
 }
 

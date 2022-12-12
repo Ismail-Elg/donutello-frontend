@@ -203,6 +203,7 @@ class Scene {
           roughness: 1,
         });
         this.donut.children[2].material = glazeMaterial;
+
         progress = 1;
       }
       else if (progress == 1) {
@@ -450,7 +451,7 @@ class Scene {
 
   changeColorTopping(color) {
     if (color == 0) {
-      this.donut.children[4].material.color.setHex(0x3C2317);
+      this.donut.children[4].material.color.setHex(0x000000);
       this.configuration.donut.topping.color = 0;
     }
     else if (color == 1) {
