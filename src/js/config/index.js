@@ -203,7 +203,11 @@ class Scene {
           roughness: 1,
         });
         this.donut.children[2].material = glazeMaterial;
-
+        this.donut.children[4].material = new THREE.MeshStandardMaterial({
+          color: 0xFF577F,
+          metalness: 0,
+          roughness: 1,
+          });
         progress = 1;
       }
       else if (progress == 1) {
