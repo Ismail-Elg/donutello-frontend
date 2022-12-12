@@ -326,6 +326,16 @@ class Scene {
       this.donut.children[2].material.color.setHex(0xFF577F);
       this.configuration.donut.glaze = 2;
     }
+    else if (glaze == 3) {
+      this.donut.children[2].visible = true;
+      this.donut.children[2].material.color.setHex(0x8CE0C8);
+      this.configuration.donut.glaze = 3;
+    }
+    else if (glaze == 4) {
+      this.donut.children[2].visible = true;
+      this.donut.children[2].material.color.setHex(0xF23F00);
+      this.configuration.donut.glaze = 4;
+    }
   }
 
   changePattern(pattern) {
