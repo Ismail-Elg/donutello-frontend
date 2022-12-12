@@ -310,32 +310,73 @@ body{
               
             }
         }
+        .choco{
+          background-image: url("images/chocodough.png");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        
+        .aardbei{
+          background-image: url("images/aardbeidough.png");
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        
+        .pistache{
+          background-image: url("images/pistachedough.png");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        
+        .orange{
+          background-image: url("images/orange.webp");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .rood{
+          background-color: #FF577F;
+        }
+
+        .bruin{
+          background-color: #441e09;
+        }
+        .groen{
+          background-color: #1f7e4d;
+        }
+        .geel{
+          background-color: #f7d56e;
+        }
+        .blauw{
+          background-color: #3ab0ff; 
+        }
+        .wit{
+          background-color: #f3f3f3;
+        }
+
+        .marsh{
+          background-image: url("images/marsh.webp");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .sprinkles{
+          background-image: url("images/sprinkles.webp");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .snickers{
+          background-image: url("images/snickers.jpg");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
     }
 }
 
-.choco{
-  background-image: url("images/chocodough.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.aardbei{
-  background-image: url("images/aardbeidough.png");
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.pistache{
-  background-image: url("images/pistachedough.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.orange{
-  background-image: url("images/orange.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}

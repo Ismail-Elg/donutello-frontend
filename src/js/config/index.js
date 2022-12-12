@@ -431,19 +431,19 @@ class Scene {
       this.configuration.donut.pattern.color = 2;
     }
     else if (color == 3) {
-      this.donut.children[5].material.color.setHex(0xFF577F);
+      this.donut.children[5].material.color.setHex(0x1f7e4d);
       this.configuration.donut.pattern.color = 3;
     }
     else if (color == 4) {
-      this.donut.children[5].material.color.setHex(0x3C2317);
+      this.donut.children[5].material.color.setHex(0xf7d56e);
       this.configuration.donut.pattern.color = 4;
     }
     else if (color == 5) {
-      this.donut.children[5].material.color.setHex(0xFF577F);
+      this.donut.children[5].material.color.setHex(0x3ab0ff);
       this.configuration.donut.pattern.color = 5;
     }
     else if (color == 6) {
-      this.donut.children[5].material.color.setHex(0x3C2317);
+      this.donut.children[5].material.color.setHex(0xf3f3f3);
       this.configuration.donut.pattern.color = 6;
     }
   }
@@ -462,19 +462,19 @@ class Scene {
       this.configuration.donut.topping.color = 2;
     }
     else if (color == 3) {
-      this.donut.children[4].material.color.setHex(0xFF577F);
+      this.donut.children[4].material.color.setHex(0x1f7e4d);
       this.configuration.donut.topping.color = 3;
     }
     else if (color == 4) {
-      this.donut.children[4].material.color.setHex(0x3C2317);
+      this.donut.children[4].material.color.setHex(0xf7d56e);
       this.configuration.donut.topping.color = 4;
     }
     else if (color == 5) {
-      this.donut.children[4].material.color.setHex(0xFF577F);
+      this.donut.children[4].material.color.setHex(0x3ab0ff);
       this.configuration.donut.topping.color = 5;
     }
     else if (color == 6) {
-      this.donut.children[4].material.color.setHex(0x3C2317);
+      this.donut.children[4].material.color.setHex(0xf3f3f3);
       this.configuration.donut.topping.color = 6;
     }
   }
