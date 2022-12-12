@@ -294,6 +294,20 @@ class Scene {
       this.donut.children[1].children[0].material.color.setHex(0xFF577F);
       this.configuration.donut.dough = 2;
     }
+    else if (dough == 3) {
+      this.donut.children[1].children[2].visible = true;
+      this.donut.children[1].children[0].visible = true;
+      this.donut.children[1].children[2].material.color.setHex(0x8CE0C8);
+      this.donut.children[1].children[0].material.color.setHex(0x8CE0C8);
+      this.configuration.donut.dough = 3;
+    }
+    else if (dough == 4) {
+      this.donut.children[1].children[2].visible = true;
+      this.donut.children[1].children[0].visible = true;
+      this.donut.children[1].children[2].material.color.setHex(0xF23F00);
+      this.donut.children[1].children[0].material.color.setHex(0xF23F00);
+      this.configuration.donut.dough = 4;
+    }
 
   }
 
