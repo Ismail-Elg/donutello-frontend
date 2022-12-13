@@ -252,14 +252,15 @@ body{
               }
           &__user{
             //edit input fields
+            margin-top: 3rem;
             input{
                 width: 80%;
                 height: 5rem;
                 border: none;
                 font-size: 2rem;
                 font-weight: 500;
-                margin-bottom: 2rem;
-                padding: 0 1rem;
+                margin-bottom: 1rem;
+                padding: 0 1rem 0 2rem;
                 border-radius: vars.$border-radius;
                 color: vars.$color-white;
                 background-color: vars.$color-pastelblue;
@@ -276,7 +277,7 @@ body{
                 font-size: 2rem;
                 font-weight: 500;
                 margin-bottom: 2rem;
-                padding: 1rem;
+                padding: 1rem 0rem 1rem 2rem;
                 border-radius: 40px;
                 color: vars.$color-white;
                 background-color: vars.$color-pastelblue;
