@@ -232,14 +232,21 @@ class Scene {
         progress = 4;
       }
       else if (progress == 4) {
-        //log the configuration
-        console.log(this.configuration);
+     
+        progress = 5;
+     
 
+      }
+      else if(progress == 5){
+     
         this.configuration.donut.logo.img = "test";
-        this.configuration.donut.user.name = "John Doe";
-        this.configuration.donut.user.email = "john@test.com";
-        this.configuration.donut.user.phone = "123456789";
-        this.configuration.donut.user.message = "test";
+        this.configuration.donut.user.name = document.getElementById("fname").value;
+        this.configuration.donut.user.email = document.getElementById("email").value;
+        this.configuration.donut.user.phone = document.getElementById("number").value;
+        this.configuration.donut.user.message = document.getElementById("subject").value;
+
+        
+
 
         console.log(JSON.stringify(this.configuration));
         fetch("https://salmon-puffer-tie.cyclic.app/api/v1/donuts", {
@@ -254,8 +261,6 @@ class Scene {
             console.log("Success:", data);
           }
           );
-     
-
       }
     });
 
