@@ -94,6 +94,7 @@ body{
         }
         &__choices{
 
+          
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -135,76 +136,7 @@ body{
               &__pick-active:after {
                 border: 5px solid vars.$color-strawberry;
               }
-              &__upload{
-                background-color: vars.$color-pastelyellow;
-                .file-upload-wrapper {
-                    $defaultColor: #4daf7c;
-                    $height: 60px;
-                    
-                    position: relative;
-                    width: 100%;
-                    height: $height;
-                    
-                    &:after {
-                  
-                      font-size: 18px;
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      background: #fff;
-                      padding: 10px 15px;
-                      display: block;
-                      width: calc(100% - 40px);
-                      pointer-events: none;
-                      z-index: 20;
-                      height: $height - 20px;
-                      line-height: $height - 20px;
-                      color: #999;
-                      border-radius: 5px 10px 10px 5px;
-                      font-weight: 300;
-                    }
-                    
-                    &:before {
-                      content: 'Upload';
-                      position: absolute;
-                      top: 0;
-                      right: 0;
-                      display: inline-block;
-                      height: 60px;
-                      background: $defaultColor;
-                      color: #fff;
-                      font-weight: 700;
-                      z-index: 25;
-                      font-size: 16px;
-                      line-height: $height;
-                      padding: 0 15px;
-                      text-transform: uppercase;
-                      pointer-events: none;
-                      border-radius: 0 5px 5px 0;
-                    }
-                    
-                    &:hover {
-                      &:before {
-                        background: darken($defaultColor, 10%);
-                      }
-                    }
-                     input {
-                      opacity: 0;
-                      position: absolute;
-                      top: 0;
-                      right: 0;
-                      bottom: 0;
-                      left: 0;
-                      z-index: 99;
-                      height: $height - 20px;
-                      margin: 0;
-                      padding: 0;
-                      display: block;
-                      cursor: pointer;
-                      width: 100%;
-                    }
-                  }
-              }
+
 
               &__color{
                 width: 100%;
@@ -288,6 +220,10 @@ body{
                     color: vars.$color-white;
                 }              
             }
+          }
+
+          &__upload{
+            
           }
         }
         &__next{
@@ -401,4 +337,48 @@ body{
         }
     }
 }
+
+.upload{
+  background-color: vars.$color-lemon;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin: 2rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: vars.$color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 5px solid vars.$color-white;
+  position: relative;   
+}
+
+.upload label {
+  position: absolute;
+  z-index: 200;
+  background-image: url("images/upload2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40%;
+  height: 40%;
+  cursor: pointer;
+}
+
+.preview{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; 
+}
+
+.upload input[type="file"] {
+  display: none;
+}
+
+
 

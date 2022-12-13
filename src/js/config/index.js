@@ -277,7 +277,7 @@ class Scene {
         this.donut.children[7].material.map.flipY = false;
         this.donut.children[8].material.map.flipY = false;
         this.donut.children[9].material.map.flipY = false;
-
+ 
       }
     });
   }

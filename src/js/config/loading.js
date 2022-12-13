@@ -17,3 +17,5 @@ function loadAfterTime(){
 
     loading.style.display = "none";
 }
+
+
