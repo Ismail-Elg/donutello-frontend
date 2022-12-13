@@ -2,9 +2,12 @@ import * as THREE from "three";
 import { TextureLoader } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import * as cloudinary from "cloudinary-core";
 
 class Scene {
   constructor() {
+
+    
 
     this.CANVAS_WIDTH = document.querySelector(".configurator__scene").clientWidth;
     this.CANVAS_HEIGHT = document.querySelector(".configurator__scene").clientHeight;
@@ -33,6 +36,7 @@ class Scene {
 
     this.donut = null;
     this.colorStep2 = null;
+    this.cloudLogo = null;
 
     this.configuration = {
      donut: {
@@ -58,6 +62,11 @@ class Scene {
       }
      }
     }
+
+
+ 
+
+
 
  
   }
@@ -184,7 +193,7 @@ class Scene {
     const button = document.querySelector(".configurator__editor__next__button");
     button.addEventListener("click", (e) => {
       this.colorStep2 = document.querySelectorAll(".configurator__editor__choices__color[data-colorstep='2']");
-
+    
       this.colorStep2.forEach((color) => {
         color.style.display = "none";
       });
@@ -238,7 +247,7 @@ class Scene {
       }
       else if(progress == 5){
      
-        this.configuration.donut.logo.img = "test";
+        this.configuration.donut.logo.img = this.cloudLogo;
         this.configuration.donut.user.name = document.getElementById("fname").value;
         this.configuration.donut.user.email = document.getElementById("email").value;
         this.configuration.donut.user.phone = document.getElementById("number").value;
@@ -267,7 +276,7 @@ class Scene {
 
       let file = e.target.files[0];
 
-
+      
       if (file.type == "image/png" || file.type == "image/jpeg") {
 
         const logoMaterial = new THREE.MeshBasicMaterial({
@@ -281,7 +290,27 @@ class Scene {
         this.donut.children[7].material.map.flipY = false;
         this.donut.children[8].material.map.flipY = false;
         this.donut.children[9].material.map.flipY = false;
- 
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append("api_key", "517256495781723");
+        formData.append("upload_preset", "e32cnmkl");
+        fetch("https://api.cloudinary.com/v1_1/$dnriwao3w/upload", {
+          method: "POST",
+          body: formData
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+            this.configuration.donut.logo.img = data.url;
+            this.cloudLogo = data.public_id;
+          }
+          )
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        
+          
       }
     });
   }
