@@ -309,6 +309,7 @@ class Scene {
           alles.style.display = "none";
         }, 3000);
         //send user to index.html
+        window.location.href = "index.html";
       }
     });
 
