@@ -38,6 +38,7 @@ class Scene {
     this.donut = null;
     this.colorStep2 = null;
     this.cloudLogo = null;
+    this.cloudScreenshot = null;
 
     this.configuration = {
      donut: {
@@ -55,6 +56,7 @@ class Scene {
         type: 1,
         img: null,
       },
+      screenshot: null,
       user:{
         name: null,
         email: null,
@@ -85,13 +87,6 @@ class Scene {
 
     console.log(this.url);
 
-    //open the image in a new window
-    window
-      .open(this.url, "_blank")
-      .document.write(
-        "<img src='" + this.url + "' alt='from canvas'/>"
-      );
-
       const formData = new FormData();
       formData.append("file", this.url);
       formData.append("api_key", "517256495781723");
@@ -103,6 +98,8 @@ class Scene {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          this.configuration.donut.screenshot = data.public_id;
+          this.cloudScreenshot = data.public_id;
         }
         )
         .catch((error) => {
@@ -197,6 +194,7 @@ class Scene {
         const pattern = e.target.dataset.pattern;
         const topping = e.target.dataset.topping;
         const logo = e.target.dataset.logo;
+      
         this.changeDough(dough);
         this.changeGlaze(glaze);
         this.changePattern(pattern);
@@ -276,15 +274,10 @@ class Scene {
       }
       else if (progress == 4) {
      
-        progress = 5;
-     
-
-      }
-      else if(progress == 5){
-        
         this.createImage();
 
         this.configuration.donut.logo.img = this.cloudLogo;
+        this.configuration.donut.screenshot = this.cloudScreenshot;
         this.configuration.donut.user.name = document.getElementById("fname").value;
         this.configuration.donut.user.email = document.getElementById("email").value;
         this.configuration.donut.user.phone = document.getElementById("number").value;
@@ -306,6 +299,12 @@ class Scene {
             console.log("Success:", data);
           }
           );
+     
+
+      }
+      else if(progress == 5){
+        
+     
       }
     });
 
