@@ -27,6 +27,7 @@ class Scene {
       canvas: document.querySelector(".webgl"),
       antialias: true,
       alpha: true,
+      preserveDrawingBuffer: true
     });
 
     this.renderer.setSize(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
@@ -64,7 +65,6 @@ class Scene {
     }
 
 
- 
 
 
 
@@ -76,7 +76,41 @@ class Scene {
     this.helpers();
     this.load();
     this.lights();
+ 
   }
+
+  createImage(saveAsFileName) {
+
+    this.url = this.renderer.domElement.toDataURL();
+
+    console.log(this.url);
+
+    //open the image in a new window
+    window
+      .open(this.url, "_blank")
+      .document.write(
+        "<img src='" + this.url + "' alt='from canvas'/>"
+      );
+
+      const formData = new FormData();
+      formData.append("file", this.url);
+      formData.append("api_key", "517256495781723");
+      formData.append("upload_preset", "e32cnmkl");
+      fetch("https://api.cloudinary.com/v1_1/$dnriwao3w/upload", {
+        method: "POST",
+        body: formData
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        }
+        )
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+
+}
 
   load() {
     const loader = new GLTFLoader();
@@ -217,6 +251,7 @@ class Scene {
           roughness: 1,
           });
         progress = 1;
+      
       }
       else if (progress == 1) {
         this.donut.children[1].visible = false;
@@ -246,7 +281,9 @@ class Scene {
 
       }
       else if(progress == 5){
-     
+        
+        this.createImage();
+
         this.configuration.donut.logo.img = this.cloudLogo;
         this.configuration.donut.user.name = document.getElementById("fname").value;
         this.configuration.donut.user.email = document.getElementById("email").value;
