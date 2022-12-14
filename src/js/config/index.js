@@ -307,9 +307,9 @@ class Scene {
         alles.style.display = "block";
         setTimeout(() => {
           alles.style.display = "none";
+          window.location.href = "index.html";
         }, 3000);
         //send user to index.html
-        window.location.href = "index.html";
       }
     });
 
