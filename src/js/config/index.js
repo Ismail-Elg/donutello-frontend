@@ -300,11 +300,16 @@ class Scene {
           }
           );
      
-
+          progress = 5;
       }
       else if(progress == 5){
-        
-     
+        let alles = document.querySelector(".alles");
+        alles.style.display = "block";
+        setTimeout(() => {
+          alles.style.display = "none";
+          window.location.href = "index.html";
+        }, 3000);
+        //send user to index.html
       }
     });
 
