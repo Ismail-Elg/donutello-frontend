@@ -273,43 +273,85 @@ class Scene {
         progress = 4;
       }
       else if (progress == 4) {
-     
+
         this.createImage();
 
-        this.configuration.donut.logo.img = this.cloudLogo;
-        this.configuration.donut.screenshot = this.cloudScreenshot;
-        this.configuration.donut.user.name = document.getElementById("fname").value;
-        this.configuration.donut.user.email = document.getElementById("email").value;
-        this.configuration.donut.user.phone = document.getElementById("number").value;
-        this.configuration.donut.user.message = document.getElementById("subject").value;
+        progress = 5;
 
         
-
-
-        console.log(JSON.stringify(this.configuration));
-        fetch("https://salmon-puffer-tie.cyclic.app/api/v1/donuts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(this.configuration),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Success:", data);
-          }
-          );
-     
-          progress = 5;
       }
       else if(progress == 5){
-        let alles = document.querySelector(".alles");
-        alles.style.display = "block";
-        setTimeout(() => {
-          alles.style.display = "none";
-          window.location.href = "index.html";
-        }, 3000);
-        //send user to index.html
+        document.querySelector(".error").style.display = "none";
+        document.querySelector(".error").innerHTML = " ";
+        
+        const input = document.querySelectorAll(".configurator__editor__choices__user input");
+        let filled = true;
+        input.forEach((input) => {
+          if (input.value == "") {
+            filled = false;
+          }
+        }
+        );
+        if (filled) {
+          input.forEach((input) => {
+            input.value = input.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          }
+          );
+          if (isNaN(input[0].value)) {
+            //make sure email is valid
+            if (input[1].value.includes("@") && input[1].value.includes(".")) {
+              //make sure phone number is valid
+              if (input[2].value.length > 8 && !isNaN(input[2].value)) {
+                this.configuration.donut.logo.img = this.cloudLogo;
+                this.configuration.donut.screenshot = this.cloudScreenshot;
+                this.configuration.donut.user.name = document.getElementById("fname").value;
+                this.configuration.donut.user.email = document.getElementById("email").value;
+                this.configuration.donut.user.phone = document.getElementById("number").value;
+                this.configuration.donut.user.message = document.getElementById("subject").value;
+    
+                console.log(JSON.stringify(this.configuration));
+                fetch("https://salmon-puffer-tie.cyclic.app/api/v1/donuts", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(this.configuration),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log("Success:", data);
+                  }
+                  );
+    
+                progress = 5;
+              }
+              else{
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".error").innerHTML = "Please enter a valid phone number";
+              }
+            }
+            else {
+              document.querySelector(".error").style.display = "block";
+              document.querySelector(".error").innerHTML = "Please enter a valid email";
+            }
+          }
+          else{
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".error").innerHTML = "Please enter a valid name";
+          }
+        }
+        else {
+          document.querySelector(".error").style.display = "block";
+          document.querySelector(".error").innerHTML = "Please fill in all fields";
+        }
+        
+        // let alles = document.querySelector(".alles");
+        // alles.style.display = "block";
+        // setTimeout(() => {
+        //   alles.style.display = "none";
+        //   window.location.href = "index.html";
+        // }, 3000);
+
       }
     });
 
