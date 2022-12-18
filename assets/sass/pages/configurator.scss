@@ -220,6 +220,19 @@ body{
                     color: vars.$color-white;
                 }              
             }
+            .error{
+                color: vars.$color-white;
+                background-color: vars.$color-strawberry;
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-radius: 40px;
+                width: 80%;
+                margin: -25px auto 20px auto;
+                display: none;
+
+            }
           }
 
           &__upload{
