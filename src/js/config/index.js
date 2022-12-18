@@ -302,14 +302,17 @@ class Scene {
             if (input[1].value.includes("@") && input[1].value.includes(".")) {
               //make sure phone number is valid
               if (input[2].value.length > 8 && !isNaN(input[2].value)) {
+
                 this.configuration.donut.logo.img = this.cloudLogo;
                 this.configuration.donut.screenshot = this.cloudScreenshot;
                 this.configuration.donut.user.name = document.getElementById("fname").value;
                 this.configuration.donut.user.email = document.getElementById("email").value;
                 this.configuration.donut.user.phone = document.getElementById("number").value;
                 this.configuration.donut.user.message = document.getElementById("subject").value;
-    
+
                 console.log(JSON.stringify(this.configuration));
+    
+             
                 fetch("https://salmon-puffer-tie.cyclic.app/api/v1/donuts", {
                   method: "POST",
                   headers: {
@@ -322,7 +325,13 @@ class Scene {
                     console.log("Success:", data);
                   }
                   );
-    
+                let alles = document.querySelector(".alles");
+                alles.style.display = "block";
+                setTimeout(() => {
+                  alles.style.display = "none";
+                  window.location.href = "index.html";
+                }, 3000);
+                
                 progress = 5;
               }
               else{
@@ -345,12 +354,7 @@ class Scene {
           document.querySelector(".error").innerHTML = "Please fill in all fields";
         }
         
-        // let alles = document.querySelector(".alles");
-        // alles.style.display = "block";
-        // setTimeout(() => {
-        //   alles.style.display = "none";
-        //   window.location.href = "index.html";
-        // }, 3000);
+
 
       }
     });
@@ -384,8 +388,7 @@ class Scene {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log("Success:", data);
-            this.configuration.donut.logo.img = data.url;
+            console.log("Success logo:", data);
             this.cloudLogo = data.public_id;
           }
           )
