@@ -112,7 +112,7 @@ class Scene {
   load() {
     const loader = new GLTFLoader();
     loader.load(
-      "/src/assets/models/donut.glb",
+      "/models/donut.glb",
       (gltf) => {
 
         this.donut = gltf.scene;

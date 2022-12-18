@@ -1,4 +1,4 @@
-import "./src/assets/sass/style.scss"
+import "./assets/sass/style.scss"
 import "/src/js/config/loading.js";
 
 import Scene from "/src/js/config";
