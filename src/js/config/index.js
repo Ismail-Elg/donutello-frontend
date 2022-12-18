@@ -62,7 +62,8 @@ class Scene {
         email: null,
         phone: null,
         message: null,
-      }
+      },
+      status: 0,
      }
     }
 
