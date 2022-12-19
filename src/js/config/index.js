@@ -222,8 +222,39 @@ class Scene {
     });
 
 
+
+
     let progress = 0;
     const button = document.querySelector(".configurator__editor__next__button");
+    const previous = document.querySelector(".configurator__editor__previous__button");
+    previous.addEventListener("click", (e) => {
+      if (progress == 1) {
+        this.donut.children[0].visible = false;
+        this.donut.children[1].visible = true;
+        this.donut.children[2].visible = false;
+        progress = 0;
+      }
+      if (progress == 2) {
+        this.donut.children[0].visible = true;
+        this.donut.children[1].visible = false;
+        this.donut.children[2].visible = true;
+        this.donut.children[5].visible = false;
+        progress = 1;
+      }
+      if (progress == 3) {
+        this.donut.children[3].visible = false;
+        this.donut.children[4].visible = false;
+        this.donut.children[6].visible = false;
+        progress = 2;
+      }
+      if (progress == 4) {
+        this.donut.children[7].visible = false;
+        this.donut.children[8].visible = false;
+        this.donut.children[9].visible = false;
+        progress = 3;
+      }
+    });
+
     button.addEventListener("click", (e) => {
       this.colorStep2 = document.querySelectorAll(".configurator__editor__choices__color[data-colorstep='2']");
     
@@ -270,7 +301,6 @@ class Scene {
       }
       else if (progress == 3) {
         this.donut.children[7].visible = true;
-
         progress = 4;
       }
       else if (progress == 4) {
