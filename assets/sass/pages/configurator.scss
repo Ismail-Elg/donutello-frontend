@@ -256,6 +256,22 @@ body{
               
             }
         }
+
+        &__previous{
+            position: absolute;
+            top: 75px;
+            left: 70px;
+
+            &__button{
+                color: vars.$color-strawberry;
+                background-color: vars.$color-white;
+                border: none;
+                font-size: 4rem;
+                text-transform: uppercase;
+                font-weight: 500;
+                cursor: pointer;
+            }
+        }
         .choco{
           background-image: url("/images/chocodough.png");
           background-size: cover;

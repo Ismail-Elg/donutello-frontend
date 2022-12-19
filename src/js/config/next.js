@@ -1,9 +1,3 @@
-
-
-
-
-
-
 const steps = document.querySelectorAll("[data-step]");
 let progress = 0;
 steps.forEach((step) => {
